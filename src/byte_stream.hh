@@ -20,11 +20,15 @@ public:
 
   void set_error() { error_ = true; };       // Signal that the stream suffered an error.
   bool has_error() const { return error_; }; // Has the stream had an error?
+  std::string buffer;
+  uint64_t data_pushed_total;
+  uint64_t data_popped_total;
 
 protected:
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
   uint64_t capacity_;
   bool error_ {};
+  bool writer_closed_;
 };
 
 class Writer : public ByteStream
